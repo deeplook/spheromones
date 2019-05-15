@@ -7,10 +7,11 @@ dependencies:
   - pandas
   - ipyvolume
   - pillow
+  - pip
   - shapely
-  - matplotlib    
+  - matplotlib  
+  - ipyleaflet
   - pip:
     - nbgitpuller
     - geopy
     - geojson
-    
