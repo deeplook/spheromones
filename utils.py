@@ -130,5 +130,5 @@ def extract_lines(gj: dict):
         for line in extract_lines(geom):
             yield line
     else:
-        msg = f'Unkown GeoJSON type: {gj_type}'
+        msg = f'Unknown GeoJSON type: {gj_type}'
         raise ValueError(msg)
