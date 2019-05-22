@@ -131,8 +131,8 @@ def extract_lines(gj: dict):
             yield line
     elif gj_type == 'Topology':
         transform = gj.get('transform', {})
-        scale = transform.get('scale', 1.0)
-        translate = transform.get('translate', 1.0)
+        scale = transform.get('scale', [1.0, 1.0])
+        translate = transform.get('translate', [0.0, 0.0])
         for arc in gj['arcs']:
             line = []
             prev = [0, 0]
