@@ -129,6 +129,18 @@ def extract_lines(gj: dict):
         geom = gj['geometry']
         for line in extract_lines(geom):
             yield line
+    elif gj_type == 'Topology':
+        transform = gj.get('transform', {})
+        scale = transform.get('scale', 1.0)
+        translate = transform.get('translate', 1.0)
+        for arc in gj['arcs']:
+            line = []
+            prev = [0, 0]
+            for point in arc:
+                prev[0] += point[0]
+                prev[1] += point[1]
+                line.append((prev[0] * scale[0] + translate[0], prev[1] * scale[1] + translate[1]))
+            yield line
     else:
         msg = f'Unknown GeoJSON type: {gj_type}'
         raise ValueError(msg)
