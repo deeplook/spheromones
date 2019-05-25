@@ -3,7 +3,7 @@ Utils for making maps with ipyvolume.
 
 This contains functions to convert between spherical latitude/longitude
 and Cartesian x, y, z coordinates, and some functions to extract data
-from GeoJSON.
+from GeoJSON (or TopoJSON, a slightly more compact version of GeoJSON).
 """
 
 from typing import Tuple
@@ -66,7 +66,7 @@ def xyz2latlon(
     return (lat, lon)
 
 def extract_coords(gj: dict):
-    "Yield all points in some GeoJSON as [lon, lat] coordinate pairs."
+    "Yield all points in some GeoJSON/TopoJSON as [lon, lat] coordinate pairs."
 
     gj_type = gj['type']
     
@@ -97,13 +97,13 @@ def extract_coords(gj: dict):
         for coord in extract_coords(geom):
             yield coord
     else:
-        msg = f'Unkown GeoJSON type: {gj_type}'
+        msg = f'Unkown GeoJSON/TopoJSON type: {gj_type}'
         raise ValueError(msg)
 
             
 def extract_lines(gj: dict):
     """
-    Yield lines in some GeoJSON as lists of [lon, lat] coordinate pairs.
+    Yield lines in some GeoJSON/TopoJSON as lists of [lon, lat] coordinate pairs.
 
     This ignores Point and MultiPoint because they don't form lines.
     """
@@ -141,6 +141,8 @@ def extract_lines(gj: dict):
                 prev[1] += point[1]
                 line.append((prev[0] * scale[0] + translate[0], prev[1] * scale[1] + translate[1]))
             yield line
+    elif gj_type in ['Point', 'MultiPoint']:
+        pass
     else:
-        msg = f'Unknown GeoJSON type: {gj_type}'
+        msg = f'Unknown GeoJSON/TopoJSON type: {gj_type}'
         raise ValueError(msg)
