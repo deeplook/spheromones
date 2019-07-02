@@ -71,9 +71,9 @@ def extract_coords(gj: dict):
     gj_type = gj['type']
     
     if gj_type == 'Point':
-        yield gj_coords
+        yield gj['coordinates']
     elif gj_type in ['MultiPoint', 'LineString']:
-        for coord in gj_coords:
+        for coord in gj_coords:  # FIXME
             yield coord
     elif gj_type in ['MultiLineString', 'Polygon']:
         for line in gj['coordinates']:
