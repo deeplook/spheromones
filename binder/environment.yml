@@ -6,7 +6,7 @@ dependencies:
   - numpy
   - imagemagick
   - ipyleaflet
-  - ipyvolume
+  - ipyvolume>=0.5.2
   - pandas
   - pillow
   - pip
