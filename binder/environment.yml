@@ -2,15 +2,18 @@ name: example-environment
 channels:
   - conda-forge
 dependencies:
-  - python==3.7
+  - matplotlib
   - numpy
-  - pandas
+  - imagemagick
+  - ipyleaflet
   - ipyvolume
+  - pandas
   - pillow
   - pip
-  - matplotlib  
-  - ipyleaflet
   - pip:
     - nbgitpuller
     - geopy
     - geojson
+    - sidecar
+  - python==3.8.1
+  - voila
