@@ -4,7 +4,7 @@ channels:
 dependencies:
   - matplotlib
   - numpy
-  - imagemagick
+  # - imagemagick
   - ipyleaflet
   - ipyvolume>=0.5.2
   - jupyterlab

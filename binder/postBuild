@@ -3,6 +3,7 @@
 jupyter labextension install \
     @jupyter-widgets/jupyterlab-manager \
     @jupyterlab/geojson-extension \
+    @jupyter-widgets/jupyterlab-sidecar \
     @jupyter-voila/jupyterlab-preview \
     ipyvolume \
     jupyter-threejs \
