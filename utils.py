@@ -13,9 +13,9 @@ pi_div_180 = pi / 180
 
 
 def latlon2xyz(
-    lat: float, 
-    lon: float, 
-    radius: float=1, 
+    lat: float,
+    lon: float,
+    radius: float=1,
     unit: str='deg'
 ) -> Tuple[float, float, float]:
     "Convert lat/lon pair to Cartesian x/y/z triple."
@@ -24,30 +24,24 @@ def latlon2xyz(
         lat = lat * pi_div_180
         lon = lon * pi_div_180
     cos_lat = cos(lat)
-    x = radius * cos_lat * cos(lon)
-    y = radius * cos_lat * sin(lon)
-    z = radius * sin(lat)
+    x = radius * cos_lat * sin(lon)
+    y = radius * sin(lat)
+    z = radius * cos_lat * cos(lon)
     return (x, y, z)
 
 
-# like latlon2xyz() but with swapped parameters for saving the swapping elsewhere
-def lonlat2xyz(
-    lon: float, 
-    lat: float, 
-    radius: float=1, 
-    unit: str='deg'
-) -> Tuple[float, float, float]:
+def lonlat2xyz(lon, lat, radius=1, unit='deg'):
     "Convert lat/lon pair to Cartesian x/y/z triple."
 
     if unit == 'deg':
         lat = lat * pi_div_180
         lon = lon * pi_div_180
     cos_lat = cos(lat)
-    x = radius * cos_lat * cos(lon)
-    y = radius * cos_lat * sin(lon)
-    z = radius * sin(lat)
-    return (x, y, z)
 
+    x = radius * cos_lat * sin(lon)
+    y = radius * sin(lat)
+    z = radius * cos_lat * cos(lon)
+    return (x, y, z)
 
 def xyz2latlon(
     x: float, 
